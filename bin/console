@@ -3,13 +3,20 @@
 
 require "bundler/setup"
 require "roster_server"
+require "pry"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
 
 # (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
 
-require "irb"
-IRB.start(__FILE__)
+client = RosterServer::Client.new(
+    base_url: ENV["RS_BASE_URL"],
+    client_id: ENV["RS_CLIENT_ID"],
+    client_secret: ENV["RS_CLIENT_SECRET"]
+ )
+
+Pry.start(self)
+
+# require "irb"
+# IRB.start(__FILE__)
