@@ -16,7 +16,12 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```rb
+rs_client = RosterServer::Client.new(client_id: ENV["RS_CLIENT_ID"], client_secret: ENV["RS_CLIENT_SECRET"])
+rs_client.enrollments # returns enrollments
+rs_client.users # returns all users
+rs_client.users(filter: "students") # returns only students
+```
 
 ## Development
 
