@@ -19,5 +19,6 @@ module RosterServer
   # Resources
   autoload :EnrollmentsResource, "roster_server/resources/enrollments"
   autoload :UsersResource, "roster_server/resources/users"
+  autoload :CoursesResource, "roster_server/resources/courses"
   autoload :KlassesResource, "roster_server/resources/klasses"
 end
