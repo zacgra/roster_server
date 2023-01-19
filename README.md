@@ -27,7 +27,7 @@ The base url should be similar to `https://<yoursubdomain>.rosterserver.com/ims/
 ## Getting Started
 
 ```rb
-client = RosterServer::Client.new(client_id: ENV["RS_CLIENT_ID"], client_secret: ENV["RS_CLIENT_SECRET"])
+client = RosterServer::Client.new(base_url: ENV["RS_BASE_URL"], client_id: ENV["RS_CLIENT_ID"], client_secret: ENV["RS_CLIENT_SECRET"])
 
 # Enrollments
 enrollments = client.enrollments.all
