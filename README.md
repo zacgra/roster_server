@@ -18,7 +18,13 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
     $ gem install roster_server
 
-## Usage
+## Configuration
+
+Export RS_CLIENT_ID, RS_CLIENT_SECRET, and RS_BASE_URL environment variables.
+
+The base url should be similar to `https://<yoursubdomain>.rosterserver.com/ims/oneroster/v1p1/`.
+
+## Getting Started
 
 ```rb
 client = RosterServer::Client.new(client_id: ENV["RS_CLIENT_ID"], client_secret: ENV["RS_CLIENT_SECRET"])
@@ -49,7 +55,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/roster_server.
+Bug reports and pull requests are welcome on GitHub at https://github.com/zacgra/roster_server.
 
 ## License
 
