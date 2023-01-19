@@ -1,18 +1,17 @@
-require "ostruct"
+require 'json'
 
 module RosterServer
   class Object
-    def initialize(attributes)
-      @attributes = OpenStruct.new(attributes)
-    end
+    attr_reader :data
+    # Every time an Object is called where an attribute is missing (ie is still a Ruby hash and
+    #   and hasn't been converted to an OpenStruct), then method_missing is called.
+    #   method_missing takes the "method" that was being accessed, which is really in this case
+    #   and attribute, then attempts to access the @attributes array with that attribute.
+    #   If the result is a Hash, it returns an Object (ie an OpenStruct) else it returns the original
+    #   attribute.
 
-    def method_missing(method, *args, &block)
-      attribute = @attributes.send(method, *args, &block)
-      attribute.is_a?(Hash) ? Object.new(attribute) : attribute
-    end
-
-    def respond_to_missing?(method, include_private = false)
-      true
+    def wrap_in_ostruct(data)
+      JSON.parse(data.to_json, object_class: OpenStruct)
     end
   end
 end

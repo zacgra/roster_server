@@ -1,16 +1,20 @@
 module RosterServer
   class Collection
-    attr_reader :data
+    attr_reader :list
+    attr_accessor :count
     # call from_response(response, key: "enrollments", type: Enrollment)
-    def self.from_response(response, key:, type:)
-      body = response.body
-      self.new(
-        data: body[key].map{|attrs| type.new(attrs)}
+    def self.from_response(list, type:)
+
+      newCol = self.new(
+       list: list.map{|attrs| type.new(attrs)}
       )
+      newCol.count = newCol.list.count
+      newCol
     end
 
-    def initialize(data:)
-      @data = data
+    def initialize(list:)
+      @list = list
+      @count = 0
     end
   end
 end

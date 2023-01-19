@@ -15,7 +15,7 @@ module RosterServer
     end
 
     def connection
-      @connection ||= Faraday.new do |conn|
+      @connectin ||= Faraday.new do |conn|
         conn.url_prefix = @base_url
         conn.request :oauth, consumer_key: @client_id, consumer_secret: @client_secret
         conn.request :json
@@ -26,6 +26,22 @@ module RosterServer
 
     def inspect
       "#<RosterServer::Client"
+    end
+
+    def enrollments
+      EnrollmentsResource.new(self)
+    end
+
+    def users
+      UsersResource.new(self)
+    end
+
+    def courses
+      CoursesResource.new(self)
+    end
+
+    def klasses
+      KlassesResource.new(self)
     end
   end
 end
