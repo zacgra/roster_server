@@ -24,10 +24,6 @@ module RosterServer
       end
     end
 
-    def inspect
-      "#<RosterServer::Client"
-    end
-
     def enrollments
       EnrollmentsResource.new(self)
     end
