@@ -20,22 +20,26 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Configuration
 
-Export RS_CLIENT_ID, RS_CLIENT_SECRET, and RS_BASE_URL environment variables.
+Export your `RS_CLIENT_ID`, `RS_CLIENT_SECRET`, and `RS_BASE_URL` as environment variables.
 
 The base url should be similar to `https://<yoursubdomain>.rosterserver.com/ims/oneroster/v1p1/`.
 
 ## Getting Started
 
 ```rb
-client = RosterServer::Client.new(base_url: ENV["RS_BASE_URL"], client_id: ENV["RS_CLIENT_ID"], client_secret: ENV["RS_CLIENT_SECRET"])
+client = RosterServer::Client.new( base_url: ENV["RS_BASE_URL"], 
+                                   client_id: ENV["RS_CLIENT_ID"], 
+                                   client_secret: ENV["RS_CLIENT_SECRET"]
+                                 )
 
 # Enrollments
 enrollments = client.enrollments.all
 
 enrollments.list # returns an array of Enrollment objects, each with an OpenStruct of data
-enrollments.list.first.data #returns the enrollment data under the first item in list
-enrollments.list.first.data.role # => "student"
-enrollments.list.first.data.user.sourcedId # => "12345", returns the nested user data id
+
+enrollment = enrollments.list[0].data    # store the data from the first enrollment in the list
+enrollment.role # => "student"
+enrollment.user.sourcedId # => "12345", returns the nested user data id
 
 # Users
 users = client.users.all
